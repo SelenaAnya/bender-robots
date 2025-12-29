@@ -1,0 +1,222 @@
+.section {
+    padding: 6rem 0;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .heading {
+        font-size: 3rem;
+    }
+}
+
+/* Scrolling Container */
+.scrollContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+/* Testimonials Track - анімація */
+.scrollTrack {
+    display: flex;
+    gap: 2rem;
+    animation: scroll 40s linear infinite;
+    will-change: transform;
+}
+
+/* Пауза анімації при hover */
+.scrollTrack:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Testimonial Card */
+.card {
+    background: linear-gradient(135deg, rgba(42, 42, 42, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 2px solid #2a2a2a;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    max-width: 400px;
+    height: 280px;
+    flex-shrink: 0;
+    backdrop-filter: blur(10px);
+}
+
+.card:hover,
+.cardHover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+    background: linear-gradient(135deg, rgba(52, 52, 52, 0.9) 0%, rgba(36, 36, 36, 1) 100%);
+}
+
+/* Quote Text */
+.quote {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e5e7eb;
+    margin: 0 0 auto 0;
+    flex-grow: 1;
+}
+
+/* Author Section */
+.author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.authorName {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.authorRole {
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    margin: 0;
+}
+
+/* Gradient overlays on sides */
+.scrollContainer::before,
+.scrollContainer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.scrollContainer::before {
+    left: 0;
+    background: linear-gradient(to right, #0a0a0a 0%, transparent 100%);
+}
+
+.scrollContainer::after {
+    right: 0;
+    background: linear-gradient(to left, #0a0a0a 0%, transparent 100%);
+}
+
+/* Responsive adjustments */
+@media (min-width: 1024px) {
+    .section {
+        padding: 8rem 0;
+    }
+
+    .header {
+        margin-bottom: 5rem;
+    }
+
+    .card {
+        min-width: 450px;
+        max-width: 450px;
+        height: 300px;
+        padding: 2.5rem;
+    }
+
+    .quote {
+        font-size: 1.0625rem;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .card {
+        min-width: 380px;
+        max-width: 380px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .section {
+        padding: 4rem 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .heading {
+        font-size: 2rem;
+    }
+
+    .header {
+        margin-bottom: 3rem;
+    }
+
+    .scrollTrack {
+        gap: 1.5rem;
+        animation: scroll 30s linear infinite;
+    }
+
+    .card {
+        min-width: 320px;
+        max-width: 320px;
+        height: 300px;
+        padding: 1.5rem;
+    }
+
+    .quote {
+        font-size: 0.9375rem;
+    }
+
+    .scrollContainer::before,
+    .scrollContainer::after {
+        width: 100px;
+    }
+}
+
+@media (max-width: 374px) {
+    .card {
+        min-width: 280px;
+        max-width: 280px;
+        padding: 1.25rem;
+    }
+
+    .quote {
+        font-size: 0.875rem;
+    }
+}

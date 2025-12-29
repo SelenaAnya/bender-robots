@@ -1,0 +1,323 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+/* Logo */
+.logo {
+    flex-shrink: 0;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logoImage {
+    height: 48px;
+    width: auto;
+}
+
+/* Navigation */
+.navigation {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 3rem;
+}
+
+.navigation li {
+    display: inline-block;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.navigation a:hover {
+    color: white;
+}
+
+.navigation a:hover::after {
+    width: 100%;
+}
+
+/* Right Section */
+.rightSection {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+}
+
+.langButton {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    font-weight: 400;
+}
+
+.langButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.langButton.active {
+    background-color: white;
+    color: #000;
+    font-weight: 500;
+    border-color: white;
+}
+
+.ctaButton {
+    padding: 0.625rem 1.75rem;
+    background-color: white;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.ctaButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Menu Button */
+.menuButton {
+    display: block;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menuButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menuIcon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    max-height: 0;
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.mobileMenu.open {
+    max-height: 500px;
+}
+
+.mobileMenuContent {
+    padding: 1rem 1rem 1.5rem;
+}
+
+.mobileNavigation {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.mobileNavigation li {
+    margin: 0;
+}
+
+.mobileNavigation a {
+    display: block;
+    padding: 0.875rem 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.mobileNavigation a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobileLangButtons {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.mobileLangButtons .langButton {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 0.9375rem;
+}
+
+.mobileCtaButton {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background-color: white;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.mobileCtaButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Desktop - 1024px and up */
+@media (min-width: 1024px) {
+    .navigation {
+        display: flex;
+    }
+
+    .rightSection {
+        display: flex;
+    }
+
+    .menuButton {
+        display: none;
+    }
+
+    .mobileMenu {
+        display: none;
+    }
+}
+
+/* Large Desktop - 1366px and up */
+@media (min-width: 1366px) {
+    .container {
+        padding: 0 3rem;
+    }
+
+    .navigation {
+        gap: 3.5rem;
+    }
+
+    .navigation a {
+        font-size: 1.0625rem;
+    }
+
+    .ctaButton {
+        font-size: 1rem;
+        padding: 0.75rem 2rem;
+    }
+}
+
+/* Extra Large - 1920px and up */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1720px;
+        padding: 0 4rem;
+    }
+
+    .headerContent {
+        height: 88px;
+    }
+
+    .logoImage {
+        height: 52px;
+    }
+
+    .navigation {
+        gap: 4rem;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    .headerContent {
+        height: 72px;
+    }
+
+    .logoImage {
+        height: 44px;
+    }
+}
+
+/* Mobile - small screens */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .headerContent {
+        height: 64px;
+    }
+
+    .logoImage {
+        height: 40px;
+    }
+}
+
+@media (max-width: 374px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .headerContent {
+        height: 60px;
+    }
+
+    .logoImage {
+        height: 36px;
+    }
+}

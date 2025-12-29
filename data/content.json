@@ -1,0 +1,78 @@
+{
+  "footer": {
+    "heading_uk": "Зв'яжіться з командою BENDER ROBOTS",
+    "heading_en": "Get in Touch with BENDER ROBOTS Team",
+    "description_uk": "Напишіть нам — і ми надішлемо детальну інформацію про рішення та умови поставки.",
+    "description_en": "Write to us — and we will send you detailed information about solutions and delivery terms.",
+    "email": "post@gmail.com",
+    "nameLabel_uk": "Ім'я",
+    "nameLabel_en": "Name",
+    "emailLabel_uk": "Ваш Email",
+    "emailLabel_en": "Your Email",
+    "phoneLabel_uk": "Телефон",
+    "phoneLabel_en": "Phone",
+    "submitButton_uk": "Отримати презентацію",
+    "submitButton_en": "Get Presentation",
+    "copyright_uk": "2025 BENDER ROBOTS. Усі права захищено.",
+    "copyright_en": "2025 BENDER ROBOTS. All rights reserved."
+  },
+  "products": [
+    {
+      "id": 1,
+      "name_uk": "Bender-2.0",
+      "name_en": "Bender-2.0",
+      "description_uk": "Автономний наземний робот, призначений для безпечної доставки вантажів у зону бойових дій.",
+      "description_en": "Autonomous ground robot designed for safe cargo delivery to combat zones.",
+      "features_uk": [
+        "Завантаження до 250 кг",
+        "Дальність дії: 5-15 км",
+        "Автономна робота до 60 км",
+        "Дистанційне керування"
+      ],
+      "features_en": [
+        "Load capacity up to 250 kg",
+        "Range: 5-15 km",
+        "Autonomous operation up to 60 km",
+        "Remote control"
+      ],
+      "image": "/images/bender-2.png"
+    }
+  ],
+  "forWhom": [
+    {
+      "id": 1,
+      "title_uk": "Підрозділи ЗСУ",
+      "title_en": "Armed Forces Units",
+      "image": "/images/for-whom/zsu.jpg"
+    },
+    {
+      "id": 2,
+      "title_uk": "Тактичні групи ТРО",
+      "title_en": "Tactical Defense Groups",
+      "image": "/images/for-whom/tro.jpg"
+    }
+  ],
+  "aboutUs": {
+    "heading_uk": "Ми — українські інженери, які створюють роботизовані рішення",
+    "heading_en": "We are Ukrainian engineers creating robotic solutions",
+    "description1_uk": "З початку повномасштабного вторгнення ми розробляємо бойові автономні системи.",
+    "description1_en": "Since the beginning of the full-scale invasion, we have been developing combat autonomous systems.",
+    "description2_uk": "Наша мета — зробити ЗСУ технологічно сильнішими.",
+    "description2_en": "Our goal is to make the Armed Forces technologically stronger.",
+    "video": "/videos/robot-demo.mp4"
+  },
+  "support": {
+    "heading_uk": "Нас вже підтримують:",
+    "heading_en": "Already supporting us:",
+    "description_uk": "Ми активно співпрацюємо з бойовими підрозділами.",
+    "description_en": "We actively cooperate with combat units.",
+    "units": [
+      {
+        "id": 1,
+        "name_uk": "3 прикордонний загін «Помста»",
+        "name_en": "3rd Border Guard Unit 'Pomsta'",
+        "logo": "/svg/logo/pomsta.svg"
+      }
+    ]
+  }
+}

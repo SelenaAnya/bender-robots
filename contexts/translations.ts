@@ -1,0 +1,253 @@
+type TranslationValue = string | { [key: string]: TranslationValue };
+
+export const translations: Record<'uk' | 'en', Record<string, TranslationValue>> = {
+    uk: {
+        header: {
+            bender2: 'Bender 2.0',
+            benderM: 'Bender-M',
+            benderL: 'Bender-L',
+            getPresentation: 'Отримати презентацію',
+            ukrainianLang: 'Українська мова',
+            englishLang: 'Англійська мова',
+        },
+        hero: {
+            title: 'Роботи для війни.',
+            subtitle: 'Технології для перемоги.',
+            description: 'BENDER ROBOTS - українська компанія з розробки автономних платформ для логістики, евакуації та розвідки в бойових умовах.  ',
+        },
+        common: {
+            learnMore: 'Дізнатися більше',
+            contactUs: 'Зв\'яжіться з нами',
+            menu: 'Меню',
+            close: 'Закрити',
+        },
+        aboutUs: {
+            heading: 'Ми — українські інженери, які створюють роботизовані рішення, що рятують життя.',
+            description1: 'З початку повномасштабного вторгнення ми розробляємо бойові автономні системи, здатні працювати там, де небезпечно людині: на передовій, у зоні РЕБ, під обстрілами.',
+            description2: 'Наша мета — зробити ЗСУ технологічно сильнішими.',
+        },
+        ourSteps: {
+            sectionTitle: 'НАШ ПІДХІД',
+            heading: 'Наш підхід',
+            step1: 'Розробка на основі зворотного зв\'язку від фронту',
+            step2: 'Власні технології навігації, модульності, безпеки',
+            step3: 'Максимальна прохідність у будь-якій місцевості',
+            step4: 'Повністю українська команда та виробництво 🇺🇦',
+        },
+
+        support: {
+            heading: 'Нас вже підтримують:',
+            description: 'Ми активно співпрацюємо з бойовими підрозділами для адаптації платформи до реальних умов.',
+            unit1: '3 прикордонний загін ім. Героя України Євгена Пікуса «Помста»',
+            unit2: '4 прикордонний загін РубПАК «Стрікс»',
+            unit3: '10 мобільний прикордонний загін ДПСУ «Дозор»',
+            unit4: '6 прикордонний Волинський загін',
+            unit5: '3 ОШБр',
+            unit6: '4 бригада оперативного призначення НГУ «Рубіж»',
+            unit7: '108-й окремий штурмовий батальон «Вовки Да Вінчі»',
+            unit8: '13 бригада НГУ Хартія',
+        },
+        forWhom: {
+            sectionTitle: 'ДЛЯ КОГО МИ ПРАЦЮЄМО',
+            heading: 'Для кого ми працюємо',
+            category1: 'Підрозділи ЗСУ',
+            category2: 'Тактичні групи ТРО',
+            category3: 'Волонтерські фонди',
+            category4: 'Військові медики',
+            category5: 'Логістичні команди на фронті',
+        },
+            products: {
+        sectionTitle: 'ЛІНІЙКА ПРОДУКТІВ',
+        heading: 'Лінійка продуктів',
+        button: 'Переглянути →',
+        bender2: {
+            name: 'Bender-2.0',
+            title: 'Bender 2.0',
+            description: 'Автономний наземний робот, призначений для безпечної доставки вантажів у зону бойових дій. Пересування по бездоріжжю, високоточна навігація та здатність до автономного повернення та віддалення від оператора',
+            feature1: 'Завантаження до 250 кг, оптимальна швидкість, можливість тягнути причіп, LTE та радіоканал',
+            feature2: 'Дальність дії 7ОГ: 5 км, що залежить від місцевості та перешкод. LTE: 15 км радіоконал',
+            feature3: 'Автономна робота до 60 км',
+            feature4: 'Дистанційне керування у будь-який час',
+        },
+            benderM: {
+                title: 'Bender-M',
+                description: 'Середній клас роботів',
+            },
+            benderL: {
+                title: 'Bender-L',
+                description: 'Великий робот для складних завдань',
+            },
+        },
+            testimonials: {
+            sectionTitle: 'ВІДГУКИ З ФРОНТУ',
+            heading: 'Відгуки з фронту',
+            quote1: 'Ми використовуємо BENDER-2.0 під час ротації — платформа доставляла боєкомплект учні. Без неї ризик був би максимальний.',
+            author1: 'Володимир ************',
+            role1: 'Командир роти, Східний напрямок',
+            
+            quote2: 'Ми використовуємо BENDER-2.0 під час ротації — платформа доставляла боєкомплект учні. Без неї ризик був би максимальний.',
+            author2: 'Володимир ************',
+            role2: 'Командир роти, Східний напрямок',
+            
+            quote3: 'Наглядна зайнято 20 хвилин. Керується як ґрашка, але працює як танк.',
+            author3: 'Ігор ************',
+            role3: 'Боєць БПЛА',
+            
+            quote4: 'BENDER дозволяє нам зробити РЕБ те, про що раніше лише мріяли. Ніхто не ризикує просто так, а вантаж потрібно перекинути без помилок.',
+            author4: 'Олег *******',
+            role4: 'Офіцер інженерних військ',
+            
+            quote5: 'Навчання зайняло 20 хвилин. Керується як ґрашка, але працює як танк.',
+            author5: 'Ігор ************',
+            role5: 'Боєць БПЛА',
+            
+            quote6: 'BENDER дозволяє нам зробити РЕБ те, про що раніше лише мріяли. Ніхто не ризикує просто так, а вантаж потрібно перекинути без помилок.',
+            author6: 'Олег *******',
+            role6: 'Офіцер інженерних військ',
+            
+            quote7: 'Ми використовуємо BENDER-2.0 під час ротації — платформа доставляла боєкомплект учні. Без неї ризик був би максимальний.',
+            author7: 'Володимир ************',
+            role7: 'Командир роти, Східний напрямок',
+            
+            quote8: 'Навчання зайняло 20 хвилин. Керується як ґрашка, але працює як танк.',
+            author8: 'Ігор ************',
+            role8: 'Боєць БПЛА',
+        },
+            footer: {
+                heading: 'Зв\'яжіться з командою BENDER ROBOTS',
+                description: 'Напишіть нам — і ми надішлемо детальну інформацію про рішення та умови постави.',
+                email: 'Email',
+                copyEmail: 'Копіювати email',
+                nameLabel: 'Ім\'я',
+                emailLabel: 'Ваш Email',
+                phoneLabel: 'Телефон',
+                submitButton: 'Отримати презентацію',
+                copyright: '2025 BENDER ROBOTS. Усі права захищено.',
+                privacyLink: 'Політика',
+                termsLink: 'Ліцензія',
+        },
+            
+    },
+    en: {
+        header: {
+            bender2: 'Bender 2.0',
+            benderM: 'Bender-M',
+            benderL: 'Bender-L',
+            getPresentation: 'Get Presentation',
+            ukrainianLang: 'Ukrainian language',
+            englishLang: 'English language',
+        },
+        hero: {
+            title: 'Robots for war.',
+            subtitle: 'Technologies for victory.',
+            description: 'BENDER ROBOTS is a Ukrainian company that develops autonomous platforms for logistics, evacuation, and reconnaissance in combat conditions.  ',
+
+        },
+        common: {
+            learnMore: 'Learn More',
+            contactUs: 'Contact Us',
+            menu: 'Menu',
+            close: 'Close',
+        },
+        ourSteps: {
+            sectionTitle: 'OUR APPROACH',
+            heading: 'Our Approach',
+            step1: 'Development based on frontline feedback',
+            step2: 'Proprietary navigation, modularity, and security technologies',
+            step3: 'Maximum cross-country capability in any terrain',
+            step4: 'Fully Ukrainian team and production 🇺🇦',
+        },
+        support: {
+            heading: 'Already supporting us:',
+            description: 'We actively cooperate with combat units to adapt the platform to real conditions.',
+            unit1: '3rd Border Guard Unit named after Hero of Ukraine Yevhen Pikus "Pomsta"',
+            unit2: '4th Border Guard Unit RubPAK "Striks"',
+            unit3: '10th Mobile Border Guard Unit SBGS "Dozor"',
+            unit4: '6th Border Guard Volyn Unit',
+            unit5: '3 OShBr',
+            unit6: '4th Operational Brigade NGU "Rubizh"',
+            unit7: '108th Separate Assault Battalion "Wolves of Da Vinci"',
+            unit8: '13th Brigade NGU Khartia',
+        },
+        forWhom: {
+            sectionTitle: 'WHO WE WORK FOR',
+            heading: 'Who We Work For',
+            category1: 'Armed Forces Units',
+            category2: 'Tactical Defense Groups',
+            category3: 'Volunteer Funds',
+            category4: 'Military Medics',
+            category5: 'Frontline Logistics Teams',
+        },
+        products: {
+            sectionTitle: 'PRODUCT LINE',
+            heading: 'Product Line',
+            button: 'View →',
+            bender2: {
+                name: 'Bender-2.0',
+                title: 'Bender 2.0',
+                description: 'Autonomous ground robot designed for safe cargo delivery to combat zones. Off-road movement, high-precision navigation, and autonomous return capability away from operator',
+                feature1: 'Load capacity up to 250 kg, optimal speed, trailer towing capability, LTE and radio channel',
+                feature2: 'Radio range: 5 km depending on terrain and obstacles. LTE: 15 km radio channel',
+                feature3: 'Autonomous operation up to 60 km',
+                feature4: 'Remote control at any time',
+            },
+            benderM: {
+                title: 'Bender-M',
+                description: 'Medium class robots',
+            },
+            benderL: {
+                title: 'Bender-L',
+                description: 'Large robot for complex tasks',
+            },
+        },
+        testimonials: {
+            sectionTitle: 'FRONTLINE FEEDBACK',
+            heading: 'Frontline Feedback',
+            quote1: 'We use BENDER-2.0 during rotation — the platform delivered ammunition without issue. Without it, the risk would have been maximum.',
+            author1: 'Volodymyr ************',
+            role1: 'Company Commander, Eastern Direction',
+            
+            quote2: 'We use BENDER-2.0 during rotation — the platform delivered ammunition without issue. Without it, the risk would have been maximum.',
+            author2: 'Volodymyr ************',
+            role2: 'Company Commander, Eastern Direction',
+            
+            quote3: 'Training took 20 minutes. Controlled like a toy, but works like a tank.',
+            author3: 'Ihor ************',
+            role3: 'UAV Fighter',
+            
+            quote4: 'BENDER allows us to do with EW what we could only dream of before. Nobody risks unnecessarily, and cargo needs to be moved without errors.',
+            author4: 'Oleh *******',
+            role4: 'Engineering Troops Officer',
+            
+            quote5: 'Training took 20 minutes. Controlled like a toy, but works like a tank.',
+            author5: 'Ihor ************',
+            role5: 'UAV Fighter',
+            
+            quote6: 'BENDER allows us to do with EW what we could only dream of before. Nobody risks unnecessarily, and cargo needs to be moved without errors.',
+            author6: 'Oleh *******',
+            role6: 'Engineering Troops Officer',
+            
+            quote7: 'We use BENDER-2.0 during rotation — the platform delivered ammunition without issue. Without it, the risk would have been maximum.',
+            author7: 'Volodymyr ************',
+            role7: 'Company Commander, Eastern Direction',
+            
+            quote8: 'Training took 20 minutes. Controlled like a toy, but works like a tank.',
+            author8: 'Ihor ************',
+            role8: 'UAV Fighter',
+        },
+        footer: {
+            heading: 'Get in Touch with BENDER ROBOTS Team',
+            description: 'Write to us — and we will send you detailed information about solutions and delivery terms.',
+            email: 'Email',
+            copyEmail: 'Copy email',
+            nameLabel: 'Name',
+            emailLabel: 'Your Email',
+            phoneLabel: 'Phone',
+            submitButton: 'Get Presentation',
+            copyright: '2025 BENDER ROBOTS. All rights reserved.',
+            privacyLink: 'Privacy',
+            termsLink: 'License',
+        },
+        
+    },
+};
