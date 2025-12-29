@@ -40,16 +40,31 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === 'admin2025') {
+  const handleLogin = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  try {
+    const response = await fetch('/api/admin/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.success) {
       setIsAuthenticated(true);
       localStorage.setItem('adminAuth', 'true');
     } else {
       alert('Невірний пароль');
     }
-  };
-
+  } catch (error) {
+    console.error('Login error:', error);
+    alert('Помилка при вході');
+  }
+};
   const handleLogout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('adminAuth');
