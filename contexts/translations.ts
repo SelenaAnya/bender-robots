@@ -149,6 +149,11 @@ export const translations: Record<'uk' | 'en', Record<string, TranslationValue>>
             menu: 'Menu',
             close: 'Close',
         },
+        aboutUs: {
+            heading: 'We are Ukrainian engineers creating robotic solutions that save lives.',
+            description1: 'Since the beginning of the full-scale invasion, we have been developing combat autonomous systems capable of operating where it is dangerous for humans: on the front line, in the EW zone, under fire.',
+            description2: 'Our goal is to make the Armed Forces of Ukraine technologically stronger.',
+        },
         ourSteps: {
             sectionTitle: 'OUR APPROACH',
             heading: 'Our Approach',
