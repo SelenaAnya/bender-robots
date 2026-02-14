@@ -70,7 +70,7 @@
 .cardHover {
     transform: translateY(-8px);
     box-shadow: 0 12px 32px rgba(255, 255, 255, 0.1);
-    border-color: #ffffff;
+    border-color: #ff6b35;
 }
 
 .cardImage {
