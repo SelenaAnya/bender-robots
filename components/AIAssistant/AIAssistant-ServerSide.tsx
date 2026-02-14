@@ -49,32 +49,27 @@ const AIAssistant = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      // Використовуємо server-side API endpoint
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          messages: [
-            {
-              role: 'system',
-              content: language === 'uk' 
-                ? 'Ти - AI помічник компанії BENDER ROBOTS. Компанія розробляє автономні наземні роботи для військових потреб: доставка вантажів, евакуація, розвідка в бойових умовах. Основні продукти: Bender-2.0 (до 250 кг, дальність 5-15 км), Bender-M (до 400 кг), Bender-L (до 600 кг). Відповідай коротко, професійно, по суті. Якщо не знаєш точної інформації - запропонуй зв\'язатися з командою.' 
-                : 'You are an AI assistant for BENDER ROBOTS. The company develops autonomous ground robots for military purposes: cargo delivery, evacuation, reconnaissance in combat conditions. Main products: Bender-2.0 (up to 250 kg, range 5-15 km), Bender-M (up to 400 kg), Bender-L (up to 600 kg). Answer briefly, professionally, to the point. If you don\'t know exact information - suggest contacting the team.'
-            },
-            ...messages.map((msg) => ({
-              role: msg.role,
-              content: msg.content,
-            })),
-            {
-              role: 'user',
-              content: userMessage.content,
-            },
-          ],
+          messages: messages.map((msg) => ({
+            role: msg.role,
+            content: msg.content,
+          })).concat([{
+            role: 'user',
+            content: userMessage.content,
+          }]),
+          language: language,
         }),
       });
+
+      if (!response.ok) {
+        throw new Error('API request failed');
+      }
 
       const data = await response.json();
       
@@ -93,8 +88,8 @@ const AIAssistant = () => {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
         content: language === 'uk' 
-          ? 'Вибачте, сталася помилка. Спробуйте ще раз або зв\'яжіться з нами безпосередньо.' 
-          : 'Sorry, an error occurred. Please try again or contact us directly.',
+          ? 'Вибачте, сталася помилка. Спробуйте ще раз або зв\'яжіться з нами безпосередньо за адресою post@gmail.com' 
+          : 'Sorry, an error occurred. Please try again or contact us directly at post@gmail.com',
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -128,6 +123,22 @@ const AIAssistant = () => {
       setMessages([welcomeMessage]);
     }
   };
+
+  // Quick replies
+  const quickReplies = [
+    {
+      uk: 'Характеристики Bender-2.0',
+      en: 'Bender-2.0 specifications',
+    },
+    {
+      uk: 'Порівняння моделей',
+      en: 'Compare models',
+    },
+    {
+      uk: 'Як замовити?',
+      en: 'How to order?',
+    },
+  ];
 
   return (
     <>
@@ -228,6 +239,21 @@ const AIAssistant = () => {
             )}
             <div ref={messagesEndRef} />
           </div>
+
+          {/* Quick Replies */}
+          {messages.length === 1 && !isLoading && (
+            <div className={styles.quickRepliesContainer}>
+              {quickReplies.map((reply, index) => (
+                <button
+                  key={index}
+                  onClick={() => setInputValue(language === 'uk' ? reply.uk : reply.en)}
+                  className={styles.quickReply}
+                >
+                  {language === 'uk' ? reply.uk : reply.en}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Input */}
           <div className={styles.inputContainer}>
