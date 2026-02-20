@@ -76,7 +76,15 @@ export const translations: Record<'uk' | 'en', Record<string, TranslationValue>>
             benderL: {
                 title: 'Bender-L',
                 description: 'Великий робот для складних завдань',
-            },
+                },
+        bender3: {
+            name: 'Bender-L',
+            description: 'Важка автономна платформа для найскладніших завдань на передовій. Максимальна вантажопідйомність та запас ходу для тривалих місій.',
+            feature1: 'Перевезення до 600 кг боєприпасів, провізії або медичних засобів',
+            feature2: 'Працює під час РЕБ, має підтримку Starlink, LTE та радіозв\'язку',
+            feature3: 'Автономна робота до 120 км',
+            feature4: 'Дистанційне керування з безпечної зони',
+        },
         },
             testimonials: {
             sectionTitle: 'ВІДГУКИ З ФРОНТУ',
@@ -203,6 +211,14 @@ export const translations: Record<'uk' | 'en', Record<string, TranslationValue>>
             benderL: {
                 title: 'Bender-L',
                 description: 'Large robot for complex tasks',
+            },
+            bender3: {
+                name: 'Bender-L',
+                description: 'Heavy autonomous platform for the most complex frontline tasks. Maximum payload and range for extended missions.',
+                feature1: 'Carries up to 600 kg of ammunition, supplies or medical equipment',
+                feature2: 'Operates under EW, supports Starlink, LTE and radio communication',
+                feature3: 'Autonomous operation up to 120 km',
+                feature4: 'Remote control from a safe zone',
             },
         },
         testimonials: {
