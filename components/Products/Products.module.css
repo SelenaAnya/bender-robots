@@ -1,5 +1,4 @@
 .section {
-    padding: 6rem 1rem;
     color: #ffffff;
 }
 
@@ -273,10 +272,6 @@
 
 /* Mobile - стек вертикально */
 @media (max-width: 767px) {
-    .section {
-        padding: 4rem 1rem;
-    }
-
     .container {
         padding: 0;
     }

@@ -11,6 +11,8 @@ Main container .main {
     max-width: 95rem;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 140px;
+    padding: 12px 28px;
 }
 
 /* Hero Section */
