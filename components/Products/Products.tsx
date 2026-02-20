@@ -18,7 +18,7 @@ const Products = () => {
                 'products.bender2.feature3',
                 'products.bender2.feature4',
             ],
-            image: '/images/bender-2.png',
+            image: '/img/Products_pic1@2x.jpg',
         },
         {
             id: 2,
@@ -30,19 +30,19 @@ const Products = () => {
                 'products.bender2.feature3',
                 'products.bender2.feature4',
             ],
-            image: '/images/bender-m.png',
+            image: '/img/Products_pic2@2x.jpg',
         },
         {
             id: 3,
-            nameKey: 'products.bender2.name',
-            descriptionKey: 'products.bender2.description',
+            nameKey: 'products.bender3.name',
+            descriptionKey: 'products.bender3.description',
             features: [
-                'products.bender2.feature1',
-                'products.bender2.feature2',
-                'products.bender2.feature3',
-                'products.bender2.feature4',
+                'products.bender3.feature1',
+                'products.bender3.feature2',
+                'products.bender3.feature3',
+                'products.bender3.feature4',
             ],
-            image: '/images/bender-l.png',
+            image: '/img/Products_pic3@2x.jpg',
         },
     ];
 
