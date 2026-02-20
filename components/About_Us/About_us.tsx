@@ -18,6 +18,7 @@ const AboutUs = () => {
                             loop
                             muted
                             playsInline
+                            poster="/img/About_Us_Video_Container.jpg"
                         >
                             <source src="/videos/robot-demo.mp4" type="video/mp4" />
                         </video>
