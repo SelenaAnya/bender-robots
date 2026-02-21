@@ -1,0 +1,369 @@
+/* ── Floating Button ── */
+.chatButton {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #229ED9;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(34, 158, 217, 0.45);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.chatButton:hover {
+    transform: scale(1.1);
+    background: #1a8bbf;
+    box-shadow: 0 12px 32px rgba(34, 158, 217, 0.55);
+}
+
+.chatButton:active {
+    transform: scale(0.95);
+}
+
+/* ── Chat Window ── */
+.chatWindow {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 380px;
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Header ── */
+.chatHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: #229ED9;
+}
+
+.headerInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatarContainer {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #ffffff;
+}
+
+.headerTitle {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.headerStatus {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.2;
+}
+
+.closeButton {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+
+.closeButton:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Body ── */
+.chatBody {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ── Welcome Bubble ── */
+.welcomeBubble {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+}
+
+.bubbleAvatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #229ED9;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.bubbleText {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 1rem 1rem 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #e5e7eb;
+}
+
+/* ── Form ── */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.input {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #229ED9;
+    background: rgba(34, 158, 217, 0.06);
+}
+
+.input::placeholder {
+    color: #6b7280;
+}
+
+.textarea {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-family: inherit;
+    resize: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    outline: none;
+    line-height: 1.5;
+}
+
+.textarea:focus {
+    border-color: #229ED9;
+    background: rgba(34, 158, 217, 0.06);
+}
+
+.textarea::placeholder {
+    color: #6b7280;
+}
+
+/* ── Send Button ── */
+.sendButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: #229ED9;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.sendButton:hover:not(:disabled) {
+    background: #1a8bbf;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(34, 158, 217, 0.4);
+}
+
+.sendButton:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.sendButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ── Success State ── */
+.successState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+.successIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(34, 158, 217, 0.15);
+    border: 2px solid #229ED9;
+    color: #229ED9;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.successTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.successText {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.successButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.telegramButton {
+    padding: 0.75rem 1.5rem;
+    background: #229ED9;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.telegramButton:hover {
+    background: #1a8bbf;
+}
+
+.secondaryButton {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: #9ca3af;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.secondaryButton:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+    .chatButton {
+        width: 56px;
+        height: 56px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .chatWindow {
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 1.25rem 1.25rem 0 0;
+    }
+}
+
+@media (max-width: 374px) {
+    .chatButton {
+        width: 52px;
+        height: 52px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .chatWindow {
+        width: 360px;
+    }
+}
+
+/* ── Large Desktop ── */
+@media (min-width: 1366px) {
+    .chatButton {
+        bottom: 2.5rem;
+        right: 2.5rem;
+    }
+
+    .chatWindow {
+        width: 400px;
+        bottom: 2.5rem;
+        right: 2.5rem;
+    }
+}

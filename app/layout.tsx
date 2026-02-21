@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import AIAssistant from '@/components/AIAssistant/AIAssistant-ServerSide';
+import TelegramChat from '@/components/TelegramChat/TelegramChat';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description: "Innovative robotics solutions for your business",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,7 +32,7 @@ export default function RootLayout({
       >
         <LanguageProvider>
           {children}
-          <AIAssistant />
+          <TelegramChat />
         </LanguageProvider>
       </body>
     </html>
