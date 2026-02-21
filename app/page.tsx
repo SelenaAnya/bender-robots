@@ -16,7 +16,7 @@ import VideoBackground from '@/components/VideoBackground/VideoBackground';
 
 export default function Home() {
   return (
-    <VideoBackground videoSrc="/public/videoBG/263119_medium.mp4" opacity={0.6}>
+    <VideoBackground videoSrc="/videoBG/263119_medium.mp4" opacity={0.6}>
       <>
         <Header />
         <Hero />
