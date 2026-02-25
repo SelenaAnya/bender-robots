@@ -126,9 +126,9 @@
 
 /* Responsive adjustments */
 @media (min-width: 1024px) {
-    .section {
+    /* .section {
         padding: 8rem 2rem;
-    }
+    } */
 
     .header {
         margin-bottom: 5rem;
