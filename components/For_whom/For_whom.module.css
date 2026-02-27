@@ -6,10 +6,12 @@
 .container {
     max-width: 1520px;
     margin: 0 auto;
+    margin-bottom: 140px;
 }
 
 .header {
     margin-bottom: 4rem;
+    text-align: center;
 }
 
 .title {
@@ -142,7 +144,8 @@
 /* Mobile */
 @media (max-width: 767px) {
     .section {
-        padding: 4rem 1rem;
+        padding: 0 20px;
+        margin-bottom: 60px;
     }
 
     .heading {

@@ -9,7 +9,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* padding: 120px 2rem 4rem; */
 }
 
 /* Темний оверлей */
@@ -22,8 +21,8 @@
     bottom: 0;
     background: linear-gradient(to bottom,
             rgba(0, 0, 0, 0.6) 0%,
-            rgba(0, 0, 0, 0.5) 50%,
-            rgba(0, 0, 0, 0.7) 100%);
+            rgba(0, 0, 0, 0.5) 50%
+            rgba(72, 72, 72, 0.314) 100%);
     z-index: 1;
 }
 
@@ -42,6 +41,7 @@
     margin: 0 0 1rem 0;
     line-height: 1.1;
     letter-spacing: -0.02em;
+    
 }
 
 .heroSubtitle {
@@ -111,6 +111,7 @@
 @media (max-width: 1023px) and (min-width: 768px) {
     .heroSection {
         padding: 100px 2rem 3rem;
+    
     }
 
     .heroTitle {

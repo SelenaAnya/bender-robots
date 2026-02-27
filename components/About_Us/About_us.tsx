@@ -12,30 +12,17 @@ const AboutUs = () => {
                 <div className={styles.videoGrid}>
                     {/* Video Section - Left column on desktop */}
                     <div className={styles.videoItem}>
-                        <video
-                            className={styles.video}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            poster="/img/About_Us_Video_Container.jpg"
-                        >
-                            <source src="/videos/robot-demo.mp4" type="video/mp4" />
-                        </video>
-                        <button className={styles.playButton} aria-label="Play video">
-                            <svg
-                                width="48"
-                                height="48"
-                                viewBox="0 0 48 48"
-                                fill="none"
-                            >
-                                <circle cx="24" cy="24" r="24" fill="rgba(255, 255, 255, 0.9)" />
-                                <path
-                                    d="M18 14L34 24L18 34V14Z"
-                                    fill="#1a1a1a"
-                                />
-                            </svg>
-                        </button>
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/5fH3LJ62wo4?si=UU1ABZHumSnpxiwQ"
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                            style={{ width: '100%', height: '100%', border: 'none' }}
+                        />
                     </div>
 
                     {/* Text Content - Right column on desktop */}

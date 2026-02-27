@@ -3,7 +3,7 @@
     position: relative;
 }
 
-.section::before {
+/* .section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -11,7 +11,7 @@
     right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, #ff6b35, transparent);
-}
+} */
 
 .container {
     max-width: 1520px;
