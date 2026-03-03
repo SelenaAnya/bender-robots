@@ -86,7 +86,7 @@
     padding: 2rem 1rem;
     transition: all 0.3s ease;
     cursor: pointer;
-    border: 2px solid #ffffff;
+    border: 2px solid #2C2E32;
     position: relative;
     overflow: visible;
 }
@@ -94,7 +94,7 @@
 .logoCard:hover,
 .logoCardHover {
     transform: translateY(-4px);
-    border-color: #ff6b35;
+    border-color: #ffffff;
     background: rgba(139, 92, 246, 0.05);
 }
 
