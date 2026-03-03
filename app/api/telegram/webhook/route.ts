@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
-import { getMsgStore, getSessionMap, StoredMessage } from '@/lib/telegramStore';
+import {
+  saveMessage,
+  getSessionForMessage,
+  getLastSessionId,
+  getNewOperatorMessages,
+  StoredMessage,
+} from '@/lib/telegramStore';
 
-// POST — Telegram sends ALL bot updates here
+// ── POST — Telegram sends ALL updates here ──────────────────────
 export async function POST(request: Request) {
   try {
     const update = await request.json();
@@ -10,32 +16,47 @@ export async function POST(request: Request) {
     const message = update.message || update.edited_message;
     if (!message) return NextResponse.json({ ok: true });
 
-    const text: string = message.text || '';
-    const replyToId: number | undefined = message.reply_to_message?.message_id;
+    const text: string = (message.text || '').trim();
+    if (!text || text.startsWith('/')) return NextResponse.json({ ok: true });
 
-    // Only process replies from operator (not commands)
-    if (replyToId && text && !text.startsWith('/')) {
-      const sessionId = getSessionMap().get(replyToId);
-      console.log(`[webhook] reply to msg_id ${replyToId} → session: ${sessionId ?? 'NOT FOUND'}`);
-
-      if (sessionId) {
-        const msg: StoredMessage = {
-          id: `op_${Date.now()}_${Math.random().toString(36).slice(2)}`,
-          sessionId,
-          role: 'operator',
-          text,
-          timestamp: Date.now(),
-          name: message.from?.first_name || 'Оператор',
-        };
-        const store = getMsgStore();
-        store.set(sessionId, [...(store.get(sessionId) || []), msg]);
-        console.log(`[webhook] ✅ saved reply for session ${sessionId}`);
-      } else {
-        console.log(`[webhook] ⚠️ no session mapped for msg_id ${replyToId}`);
-        // Debug: show all known mappings
-        console.log('[webhook] known mappings:', [...getSessionMap().entries()]);
-      }
+    // Skip messages that look like the bot's own forwarded user messages
+    // (they contain the 🔑 session prefix we add when sending)
+    if (text.includes('🔑') && text.includes('`')) {
+      console.log('[webhook] skipping own forwarded message');
+      return NextResponse.json({ ok: true });
     }
+
+    const replyToId: number | undefined = message.reply_to_message?.message_id;
+    const operatorName: string = message.from?.first_name || 'Оператор';
+
+    // 1️⃣ Try to find session via Reply mapping
+    let sessionId: string | undefined = replyToId
+      ? getSessionForMessage(replyToId)
+      : undefined;
+
+    // 2️⃣ Fallback: use the last active session
+    //    (works when operator just sends a message without Reply)
+    if (!sessionId) {
+      sessionId = getLastSessionId() || undefined;
+      console.log(`[webhook] no reply mapping, using lastSession: ${sessionId}`);
+    }
+
+    if (!sessionId) {
+      console.log('[webhook] ⚠️ no session found, ignoring message');
+      return NextResponse.json({ ok: true });
+    }
+
+    const msg: StoredMessage = {
+      id: `op_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+      sessionId,
+      role: 'operator',
+      text,
+      timestamp: Date.now(),
+      name: operatorName,
+    };
+
+    saveMessage(msg);
+    console.log(`[webhook] ✅ saved operator reply "${text}" for session ${sessionId}`);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
@@ -44,18 +65,21 @@ export async function POST(request: Request) {
   }
 }
 
-// GET — Frontend polls for new operator messages
+// ── GET — Frontend polls for new operator messages ──────────────
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const sessionId = searchParams.get('sessionId');
-  const since = parseInt(searchParams.get('since') || '0');
+  try {
+    const { searchParams } = new URL(request.url);
+    const sessionId = searchParams.get('sessionId');
+    const since     = parseInt(searchParams.get('since') || '0');
 
-  if (!sessionId) {
-    return NextResponse.json({ error: 'sessionId required' }, { status: 400 });
+    if (!sessionId) {
+      return NextResponse.json({ error: 'sessionId required' }, { status: 400 });
+    }
+
+    const messages = getNewOperatorMessages(sessionId, since);
+    return NextResponse.json({ messages, ok: true });
+  } catch (err) {
+    console.error('[webhook] poll error:', err);
+    return NextResponse.json({ messages: [], ok: false });
   }
-
-  const all = getMsgStore().get(sessionId) || [];
-  const messages = all.filter((m) => m.role === 'operator' && m.timestamp > since);
-
-  return NextResponse.json({ messages, ok: true });
 }

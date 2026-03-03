@@ -1,0 +1,27 @@
+{
+  "messages": {
+    "1772534176013_2pl8tg9m": [
+      {
+        "id": "usr_1772537556405_d2ka30cwbqu",
+        "sessionId": "1772534176013_2pl8tg9m",
+        "role": "user",
+        "text": "Привіт",
+        "timestamp": 1772537556405,
+        "name": "Анна"
+      },
+      {
+        "id": "usr_1772538168320_xb8it08252p",
+        "sessionId": "1772534176013_2pl8tg9m",
+        "role": "user",
+        "text": "==-з",
+        "timestamp": 1772538168320,
+        "name": "Анна"
+      }
+    ]
+  },
+  "sessionMap": {
+    "22": "1772534176013_2pl8tg9m",
+    "26": "1772534176013_2pl8tg9m"
+  },
+  "lastSessionId": "1772534176013_2pl8tg9m"
+}
