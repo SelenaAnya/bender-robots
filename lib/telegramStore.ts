@@ -1,87 +1,102 @@
 // lib/telegramStore.ts
-// File-based store — survives Next.js hot-reloads and module resets
-// Stores data in /data/tg-sessions.json (same folder as content.json)
-
-import fs from 'fs';
-import path from 'path';
+// ── In-memory store with file fallback for local dev ──────────
+// On Vercel: uses global variables (survives warm invocations)
+// On local:  also uses global variables (survives hot reloads)
 
 export interface StoredMessage {
   id: string;
   sessionId: string;
-  role: 'user' | 'operator';
+  role: 'user' | 'operator' | 'system';
   text: string;
   timestamp: number;
   name?: string;
 }
 
-interface StoreData {
-  // sessionId → messages
-  messages: Record<string, StoredMessage[]>;
-  // telegram message_id (string key for JSON) → sessionId
-  sessionMap: Record<string, string>;
-  // last active sessionId — fallback when no reply mapping exists
+interface StoreShape {
+  messages: Record<string, StoredMessage[]>;   // sessionId → messages
+  sessionMap: Record<string, string>;          // telegramMsgId → sessionId
   lastSessionId: string;
 }
 
-const DATA_DIR  = path.join(process.cwd(), 'data');
-const STORE_FILE = path.join(DATA_DIR, 'tg-sessions.json');
-
-function ensureDir() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+// ── Global singleton ───────────────────────────────────────────
+declare global {
+  // eslint-disable-next-line no-var
+  var __tgStore: StoreShape | undefined;
 }
 
-function readStore(): StoreData {
-  ensureDir();
-  try {
-    if (fs.existsSync(STORE_FILE)) {
-      return JSON.parse(fs.readFileSync(STORE_FILE, 'utf-8'));
-    }
-  } catch {
-    // corrupted file — start fresh
+function getStore(): StoreShape {
+  if (!global.__tgStore) {
+    global.__tgStore = {
+      messages:      {},
+      sessionMap:    {},
+      lastSessionId: '',
+    };
+
+    // Try to seed from file on local dev (best-effort)
+    try {
+      const fs   = require('fs')   as typeof import('fs');
+      const path = require('path') as typeof import('path');
+      const file = path.join(process.cwd(), 'data', 'tg-sessions.json');
+      if (fs.existsSync(file)) {
+        const raw = JSON.parse(fs.readFileSync(file, 'utf-8'));
+        if (raw.messages)      global.__tgStore.messages      = raw.messages;
+        if (raw.sessionMap)    global.__tgStore.sessionMap    = raw.sessionMap;
+        if (raw.lastSessionId) global.__tgStore.lastSessionId = raw.lastSessionId;
+      }
+    } catch { /* not available on Vercel — fine */ }
   }
-  return { messages: {}, sessionMap: {}, lastSessionId: '' };
+  return global.__tgStore;
 }
 
-function writeStore(data: StoreData) {
-  ensureDir();
-  fs.writeFileSync(STORE_FILE, JSON.stringify(data, null, 2));
+// Best-effort persist to file (local dev only)
+function tryPersist(store: StoreShape) {
+  try {
+    const fs   = require('fs')   as typeof import('fs');
+    const path = require('path') as typeof import('path');
+    const dir  = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(
+      path.join(dir, 'tg-sessions.json'),
+      JSON.stringify(store, null, 2),
+    );
+  } catch { /* Vercel read-only fs — ignore */ }
 }
 
-// ── Public API ──────────────────────────────────────────────────
+// ── Public API ─────────────────────────────────────────────────
 
-/** Save a new message for a session */
-export function saveMessage(msg: StoredMessage) {
-  const store = readStore();
+export function saveMessage(msg: StoredMessage): void {
+  const store = getStore();
   if (!store.messages[msg.sessionId]) store.messages[msg.sessionId] = [];
-  store.messages[msg.sessionId].push(msg);
-  // track last active user session
-  if (msg.role === 'user') store.lastSessionId = msg.sessionId;
-  writeStore(store);
+  if (!store.messages[msg.sessionId].find(m => m.id === msg.id)) {
+    store.messages[msg.sessionId].push(msg);
+  }
+  if (msg.role === 'user') {
+    store.lastSessionId = msg.sessionId;
+  }
+  tryPersist(store);
 }
 
-/** Map a Telegram message_id to a sessionId so we can route replies */
-export function mapMessageToSession(telegramMsgId: number, sessionId: string) {
-  const store = readStore();
+export function mapMessageToSession(telegramMsgId: number, sessionId: string): void {
+  const store = getStore();
   store.sessionMap[String(telegramMsgId)] = sessionId;
   store.lastSessionId = sessionId;
-  writeStore(store);
-  console.log(`[store] mapped msg_id ${telegramMsgId} → session ${sessionId}`);
+  tryPersist(store);
 }
 
-/** Get sessionId for a Telegram message_id (from operator reply) */
 export function getSessionForMessage(telegramMsgId: number): string | undefined {
-  const store = readStore();
-  return store.sessionMap[String(telegramMsgId)];
+  return getStore().sessionMap[String(telegramMsgId)];
 }
 
-/** Get the last active sessionId (fallback for non-reply messages) */
 export function getLastSessionId(): string {
-  return readStore().lastSessionId;
+  return getStore().lastSessionId;
 }
 
-/** Get new operator messages for a session since a timestamp */
 export function getNewOperatorMessages(sessionId: string, since: number): StoredMessage[] {
-  const store = readStore();
-  const all = store.messages[sessionId] || [];
-  return all.filter((m) => m.role === 'operator' && m.timestamp > since);
+  const store = getStore();
+  const msgs  = store.messages[sessionId] || [];
+  return msgs.filter(m => m.role === 'operator' && m.timestamp > since);
+}
+
+export function getStoreSnapshot(): StoreShape {
+  return getStore();
 }

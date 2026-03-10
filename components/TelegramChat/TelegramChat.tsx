@@ -70,8 +70,16 @@ const TelegramChat = () => {
   const typingTimeoutRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastPollTimeRef   = useRef<number>(0);
 
-  // Keep ref in sync with state
+  // Keep ref in sync with state — immediately, no race condition
   useEffect(() => { lastPollTimeRef.current = lastPollTime; }, [lastPollTime]);
+
+  // Reset poll timestamp every time chat opens so we always fetch current messages
+  useEffect(() => {
+    if (isOpen) {
+      setLastPollTime(0);
+      lastPollTimeRef.current = 0;
+    }
+  }, [isOpen]);
 
   // Init session
   useEffect(() => {
@@ -147,13 +155,15 @@ const TelegramChat = () => {
   }, [isOpen, isMinimized]);
 
   useEffect(() => {
-    if (isOpen && nameConfirmed) {
+    if (isOpen) {
+      // Poll immediately once, then every 3s
+      pollMessages();
       pollIntervalRef.current = setInterval(pollMessages, 3000);
     } else {
       if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
     }
     return () => { if (pollIntervalRef.current) clearInterval(pollIntervalRef.current); };
-  }, [isOpen, nameConfirmed, pollMessages]);
+  }, [isOpen, pollMessages]);
 
   // ── i18n ─────────────────────────────────────────────────────
   const T = {
