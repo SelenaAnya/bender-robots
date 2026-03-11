@@ -65,6 +65,24 @@
         "timestamp": 1773146071011,
         "name": "ghbdsn"
       }
+    ],
+    "1773147737548_kmswrp31": [
+      {
+        "id": "usr_1773147763620_mabx8bxfeak",
+        "sessionId": "1773147737548_kmswrp31",
+        "role": "user",
+        "text": "Privit",
+        "timestamp": 1773147763620,
+        "name": "Anna"
+      },
+      {
+        "id": "usr_1773147818135_ggxa7oxbomr",
+        "sessionId": "1773147737548_kmswrp31",
+        "role": "user",
+        "text": "))",
+        "timestamp": 1773147818135,
+        "name": "Anna"
+      }
     ]
   },
   "sessionMap": {
@@ -72,7 +90,9 @@
     "26": "1772534176013_2pl8tg9m",
     "28": "1772534176013_2pl8tg9m",
     "34": "1772534176013_2pl8tg9m",
-    "36": "1772534176013_2pl8tg9m"
+    "36": "1772534176013_2pl8tg9m",
+    "38": "1773147737548_kmswrp31",
+    "39": "1773147737548_kmswrp31"
   },
-  "lastSessionId": "1772534176013_2pl8tg9m"
+  "lastSessionId": "1773147737548_kmswrp31"
 }
